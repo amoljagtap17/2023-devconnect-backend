@@ -2,10 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""create user input"""
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """email of user"""
+  email: String!
+
+  """password of user"""
+  password: String!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
@@ -14,17 +23,33 @@ type Mutation {
 }
 
 type Query {
-  user(id: Int!): User!
+  user(id: String!): User!
   users: [User!]!
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """email of user"""
+  email: String
   id: Int!
+
+  """password of user"""
+  password: String
 }
 
+"""User object"""
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Date and time when the object was created"""
+  createdAt: DateTime!
+
+  """email of user"""
+  email: String!
+
+  """ID of model"""
+  id: ID!
+
+  """password of user"""
+  password: String!
+
+  """Date and time when the object was last updated"""
+  updatedAt: DateTime!
 }

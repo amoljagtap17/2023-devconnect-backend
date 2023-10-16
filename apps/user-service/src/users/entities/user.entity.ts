@@ -11,8 +11,8 @@ import { HydratedDocument } from 'mongoose';
 export type UserDocument = HydratedDocument<User>;
 
 export enum UserRole {
-  USER,
-  ADMIN,
+  USER = 'USER',
+  ADMIN = 'ADMIN',
 }
 
 registerEnumType(UserRole, {
@@ -22,7 +22,7 @@ registerEnumType(UserRole, {
 
 @ObjectType({ description: 'User object' })
 @Directive('@key(fields: "id")')
-@Schema()
+@Schema({ versionKey: false, timestamps: true, collection: 'users' })
 export class User extends BaseModel {
   @Field({ description: 'email of user' })
   @Prop({ required: true, unique: true })

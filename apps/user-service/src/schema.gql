@@ -33,9 +33,6 @@ input UpdateUserInput {
 
   """password of user"""
   password: String
-
-  """role of user"""
-  role: UserRole = USER
 }
 
 """User object"""

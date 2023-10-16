@@ -18,8 +18,8 @@ scalar DateTime
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  removeUser(id: Int!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
+  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
@@ -30,10 +30,12 @@ type Query {
 input UpdateUserInput {
   """email of user"""
   email: String
-  id: Int!
 
   """password of user"""
   password: String
+
+  """role of user"""
+  role: UserRole = USER
 }
 
 """User object"""
@@ -50,6 +52,15 @@ type User {
   """password of user"""
   password: String!
 
+  """role of user"""
+  role: UserRole!
+
   """Date and time when the object was last updated"""
   updatedAt: DateTime!
+}
+
+"""allowed roles for user"""
+enum UserRole {
+  ADMIN
+  USER
 }

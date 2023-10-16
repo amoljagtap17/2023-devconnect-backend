@@ -17,15 +17,15 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+  create(createUserInput: CreateUserInput): Promise<User> {
+    return this.userModel.create(createUserInput);
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserInput: UpdateUserInput): Promise<User> {
+    return this.userModel.findByIdAndUpdate(id, updateUserInput).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string): Promise<User> {
+    return this.userModel.findByIdAndDelete(id).exec();
   }
 }

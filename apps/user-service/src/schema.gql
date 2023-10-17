@@ -79,9 +79,6 @@ type User {
   """password of user"""
   password: String!
 
-  """refresh token"""
-  refreshToken: String!
-
   """role of user"""
   role: UserRole!
 

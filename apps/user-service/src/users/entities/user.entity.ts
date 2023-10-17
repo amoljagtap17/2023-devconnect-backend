@@ -37,7 +37,11 @@ export class User extends BaseModel {
     defaultValue: UserRole.USER,
   })
   @Prop({ enum: UserRole, default: UserRole.USER })
-  role?: UserRole;
+  role: UserRole;
+
+  @Field({ description: 'refresh token' })
+  @Prop({ required: false, default: null })
+  refreshToken?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -17,6 +17,10 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
+  findOneByEmail(email: string): Promise<User> {
+    return this.userModel.findOne({ email }).exec();
+  }
+
   create(createUserInput: CreateUserInput): Promise<User> {
     return this.userModel.create(createUserInput);
   }

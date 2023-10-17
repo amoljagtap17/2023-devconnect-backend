@@ -7,8 +7,8 @@ import {
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { AuthModule } from './auth/auth.module';
         federation: 2,
         path: join(process.cwd(), 'apps/user-service/src/schema.gql'),
       },
-      include: [UsersModule],
+      include: [UsersModule, AuthModule],
       sortSchema: true,
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],

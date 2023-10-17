@@ -1,4 +1,4 @@
-import { EntityNotFoundFilter } from '@app/common';
+// import { EntityNotFoundFilter } from '@app/common';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { UserServiceModule } from './user-service.module';
@@ -12,7 +12,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
-  app.useGlobalFilters(new EntityNotFoundFilter());
+  // app.useGlobalFilters(new EntityNotFoundFilter());
 
   await app.listen(3001);
 }

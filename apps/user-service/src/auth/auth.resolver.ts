@@ -4,26 +4,24 @@ import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
 import { SignInInput } from './dto/sign-in.input';
 import { SignUpInput } from './dto/sign-up.input';
-import { Auth } from './entities/auth.entity';
+import { Login } from './entities/login.entity';
+import { Register } from './entities/register.entity';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 
-@Resolver(() => Auth)
+@Resolver()
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Mutation(() => Auth)
+  @Mutation(() => Register)
   register(@Args('signUpInput') signUpInput: SignUpInput) {
     return this.authService.register(signUpInput);
   }
 
   @Public()
+  @Mutation(() => Login)
   @UseGuards(LocalAuthGuard)
-  @Mutation(() => Auth)
   login(@Args('signInInput') signInInput: SignInInput, @Context() ctx: any) {
-    console.log('login user::', ctx.req.user);
-    console.log('login headers::', ctx.req.headers);
-
     return this.authService.login(ctx.req.user);
   }
 }

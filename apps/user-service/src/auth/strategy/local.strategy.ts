@@ -10,6 +10,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super({ usernameField: 'email', passwordField: 'password' });
   }
 
+  authenticate(req: any, options?: any) {
+    const email = req.body.variables.signInInput.email;
+    const password = req.body.variables.signInInput.password;
+
+    super.authenticate({ ...req, body: { email, password } }, options);
+  }
+
   async validate(
     email: string,
     password: string,

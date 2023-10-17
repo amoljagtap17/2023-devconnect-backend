@@ -23,6 +23,7 @@ import { UsersModule } from './users/users.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       introspection: true,
+      context: ({ req }) => ({ req }),
     }),
     UsersModule,
     DatabaseModule,

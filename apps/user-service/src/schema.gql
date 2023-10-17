@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 """create user input"""
 input CreateUserInput {
   """email of user"""
@@ -21,10 +16,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""Login object"""
+type Login {
+  """jwt token"""
+  accessToken: String!
+}
+
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  login(signInInput: SignInInput!): Auth!
-  register(signUpInput: SignUpInput!): Auth!
+  login(signInInput: SignInInput!): Login!
+  register(signUpInput: SignUpInput!): Register!
   removeUser(id: String!): User!
   updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
 }
@@ -32,6 +33,12 @@ type Mutation {
 type Query {
   user(id: String!): User!
   users: [User!]!
+}
+
+"""Register object"""
+type Register {
+  """email of user"""
+  email: String!
 }
 
 input SignInInput {

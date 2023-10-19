@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "skill-service": {
+      "type": "application",
+      "root": "apps/skill-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/skill-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/skill-service/tsconfig.app.json"
+      }
     }
   }
 }

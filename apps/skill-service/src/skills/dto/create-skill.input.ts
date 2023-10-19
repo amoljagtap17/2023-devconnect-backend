@@ -1,7 +1,10 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-@InputType()
+@InputType({ description: 'create skill input' })
 export class CreateSkillInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field({ description: 'name of skill' })
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 }

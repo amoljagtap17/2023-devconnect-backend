@@ -1,17 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { SkillsService } from './skills.service';
-import { Skill } from './entities/skill.entity';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateSkillInput } from './dto/create-skill.input';
 import { UpdateSkillInput } from './dto/update-skill.input';
+import { Skill } from './entities/skill.entity';
+import { SkillsService } from './skills.service';
 
 @Resolver(() => Skill)
 export class SkillsResolver {
   constructor(private readonly skillsService: SkillsService) {}
-
-  @Mutation(() => Skill)
-  createSkill(@Args('createSkillInput') createSkillInput: CreateSkillInput) {
-    return this.skillsService.create(createSkillInput);
-  }
 
   @Query(() => [Skill], { name: 'skills' })
   findAll() {
@@ -19,17 +14,25 @@ export class SkillsResolver {
   }
 
   @Query(() => Skill, { name: 'skill' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id') id: string) {
     return this.skillsService.findOne(id);
   }
 
   @Mutation(() => Skill)
-  updateSkill(@Args('updateSkillInput') updateSkillInput: UpdateSkillInput) {
-    return this.skillsService.update(updateSkillInput.id, updateSkillInput);
+  createSkill(@Args('createSkillInput') createSkillInput: CreateSkillInput) {
+    return this.skillsService.create(createSkillInput);
   }
 
   @Mutation(() => Skill)
-  removeSkill(@Args('id', { type: () => Int }) id: number) {
+  updateSkill(
+    @Args('id') id: string,
+    @Args('updateSkillInput') updateSkillInput: UpdateSkillInput,
+  ) {
+    return this.skillsService.update(id, updateSkillInput);
+  }
+
+  @Mutation(() => Skill)
+  removeSkill(@Args('id') id: string) {
     return this.skillsService.remove(id);
   }
 }
